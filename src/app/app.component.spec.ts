@@ -2,13 +2,13 @@ import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { MockComponent } from 'ng-mocks';
-import { FeedComponent } from './feed/feed/feed.component';
+import { FeedListComponent } from './feed/feed-list/feed-list.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [AppComponent, MockComponent(FeedComponent)],
+      declarations: [AppComponent, MockComponent(FeedListComponent)],
     }).compileComponents();
   }));
 
