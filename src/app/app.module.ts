@@ -8,6 +8,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { FeedModule } from './feed/feed.module';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,10 +17,17 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRoutingModule,
 
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(
+      {},
+      {
+        runtimeChecks: {
+          strictActionImmutability: true,
+          strictStateImmutability: true,
+        },
+      }
+    ),
     EffectsModule.forRoot([]),
-    // todo: Add devtools only for dev.
-    StoreDevtoolsModule.instrument(),
+    ...(environment.production ? [] : [StoreDevtoolsModule.instrument()]),
 
     FeedModule,
   ],
