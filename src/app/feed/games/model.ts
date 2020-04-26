@@ -8,5 +8,5 @@ export interface Game {
 export enum GameCategoryEnum {
   Top = 'top',
   Slots = 'slots',
-  New = 'new'
+  New = 'new',
 }
