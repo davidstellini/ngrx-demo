@@ -9,6 +9,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { FeedModule } from './feed/feed.module';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,6 +31,7 @@ import { environment } from '../environments/environment';
     ...(environment.production ? [] : [StoreDevtoolsModule.instrument()]),
 
     FeedModule,
+    LayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

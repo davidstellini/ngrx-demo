@@ -5,10 +5,10 @@ import { JackpotsFacade } from '../jackpots/services/jackpots.facade';
 
 @Component({
   selector: 'app-feed',
-  templateUrl: './feed.component.html',
-  styleUrls: ['./feed.component.scss'],
+  templateUrl: './feed-list.component.html',
+  styleUrls: ['./feed-list.component.scss'],
 })
-export class FeedComponent implements OnInit {
+export class FeedListComponent implements OnInit {
   gamesWithJackpot$ = this.gamesFacade.gamesWithJackpot$.pipe(
     filter((games) => !!games)
   );

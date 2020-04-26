@@ -1,0 +1,65 @@
+
+.thumbnail {
+  height: 200px;
+  width: 300px;
+  background-color: gray;
+  border-radius: 25px;
+
+  .mask {
+    position: relative;
+    overflow: hidden;
+    float: right;
+    margin-top: -8px;
+    margin-right: -8px;
+    height: 150px;
+    width: 150px;
+
+    &:before,
+    &:after {
+      content: "";
+      position: relative;
+      display: block;
+    }
+
+    &:before {
+      width: 40px;
+      height: 8px;
+      left: 0px;
+      border-radius: 8px 0px 0px 0px;
+      background: #95bd65;
+    }
+
+    &:after {
+      width: 8px;
+      height: 40px;
+      left: 141px;
+      top: 60px;
+      border-radius: 0px 0px 8px 0px;
+      background: #4d6530;
+    }
+  }
+
+  .ribbon {
+    border-radius: 75% 75% 0px 0px;
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    position: relative;
+    top: 27px;
+    right: 7px;
+    z-index: 2;
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 -9px #57dd43, 0px 14px 8px -8px rgba(0, 0, 0, 0.2),
+    inset 55px 0px 31px -33px rgba(255, 255, 255, 0.5),
+    inset 1px 55px 31px -33px rgba(255, 255, 255, 0.1),
+    inset -55px 0px 31px -33px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    background: rgb(204, 219, 184);
+    background: linear-gradient(
+        152deg,
+        rgba(204, 219, 184, 1) 0%,
+        rgba(144, 199, 69, 1) 6%,
+        rgba(194, 214, 167, 1) 100%
+    );
+  }
+}
