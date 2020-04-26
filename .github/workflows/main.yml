@@ -1,0 +1,52 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Use Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Use cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            nodeModules-
+
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+        env:
+          CI: true
+
+      - name: Lint
+        run: npm run lint
+        env:
+          CI: true
+
+      - name: Test
+        run: npm test --ci --coverage --maxWorkers=2
+        env:
+          CI: true
+
+      - name: Build
+        run: npm run build
+        env:
+          CI: true
+
+      - name: Deploy docs to github pages
+        uses: JamesIves/github-pages-deploy-action@3.4.8
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: dist/casino-demo
+        if: github.ref == 'refs/heads/master'
