@@ -10,7 +10,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:prod": "ng build --prod --deploy-url /ngrx-demo/",
+    "build:prod": "ng build --prod --deploy-url /ngrx-demo/ --base-href /ngrx-demo/",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
