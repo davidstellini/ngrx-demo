@@ -1,0 +1,6 @@
+<div>
+  <h1>Games with Jackpots</h1>
+  <ul>
+    <li *ngFor="let game of (gamesWithJackpot$ | async)">{{game?.name}} - {{game?.jackpotAmount || 0}}</li>
+  </ul>
+</div>
