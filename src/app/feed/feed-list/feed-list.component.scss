@@ -1,0 +1,24 @@
+@import "mixins";
+
+virtual-scroller {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  flex-wrap: wrap;
+
+  app-feed-item {
+    margin: step(2);
+    width: 300px;
+    height: 200px;
+    display: inline-block;
+  }
+}
+
+.feed-container {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+
+
+}
