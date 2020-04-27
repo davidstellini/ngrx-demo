@@ -3,10 +3,10 @@
   [class.primary]="category === categoryTypes.Top"
   [class.secondary]="category === categoryTypes.New"
 >
-  <img *ngIf="!imgError" class="img-thubnail" [src]="backgroundImageUrl" [alt]="game.name" (error)="imgError = true" />
+  <img *ngIf="!imgError" class="img-thubnail" [src]="backgroundImageUrl" [alt]="game?.name" (error)="imgError = true" />
 
   <div *ngIf="imgError" class="img-thubnail">
-    <span>{{ game.name }} </span>
+    <span>{{ game?.name }} </span>
   </div>
   <div class="mask" *ngIf="category">
     <div class="ribbon">
