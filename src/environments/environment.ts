@@ -7,6 +7,7 @@ import { EnvironmentsModel } from './environments.model';
 export const environment: EnvironmentsModel = {
   production: false,
   baseUrl: 'http://stage.whgstage.com/front-end-test',
+  jackpotPollingInterval: 5000,
 };
 
 /*
