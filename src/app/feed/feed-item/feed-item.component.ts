@@ -15,7 +15,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 })
 export class FeedItemComponent implements OnInit, OnChanges {
   public imgError = false;
-  public category: string = '';
+  public category: GameCategory = null;
   public categoryTypes = GameCategory;
 
   @Input() game?: Game = null;
