@@ -5,8 +5,8 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
-import { Game } from '../games/model';
-import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
+import { Game, GameCategory } from '../games/model';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-feed-item',
@@ -15,8 +15,11 @@ import { DomSanitizer, SafeStyle, SafeUrl } from '@angular/platform-browser';
 })
 export class FeedItemComponent implements OnInit, OnChanges {
   public imgError = false;
+  public category: string = '';
+  public categoryTypes = GameCategory;
 
   @Input() game?: Game = null;
+  @Input() showRibbon = false;
   private _backgroundImageUrl: SafeUrl;
   public get backgroundImageUrl() {
     return this._backgroundImageUrl;
@@ -26,13 +29,29 @@ export class FeedItemComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {}
 
+  getCategoryFromGame(game: Game): GameCategory.Top | GameCategory.New | null {
+    if (game) {
+      if (game.categories.find((c) => c === GameCategory.Top)) {
+        return GameCategory.Top;
+      } else if (game.categories.find((c) => c === GameCategory.New)) {
+        return GameCategory.New;
+      } else {
+        return null;
+      }
+    }
+  }
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.game) {
       const game = changes.game.currentValue as Game;
 
-      this._backgroundImageUrl = this.sanitizer.bypassSecurityTrustUrl(
-        game.image
-      );
+      if (game.image !== (changes.game.previousValue || {}).image) {
+        this._backgroundImageUrl = this.sanitizer.bypassSecurityTrustUrl(
+          game.image
+        );
+      }
+
+      this.category = this.getCategoryFromGame(this.game);
     }
   }
 }
