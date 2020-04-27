@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { JackpotsBackend } from '../services/jackpots.backend';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, mapTo, switchMap } from 'rxjs/operators';
 import {
   fetchJackpots,
   fetchJackpotsFail,
   fetchJackpotsSuccess,
 } from './action';
-import { of } from 'rxjs';
+import { interval, of, timer } from 'rxjs';
 import { Jackpot } from '../model';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class JackpotsEffects {
@@ -31,5 +32,9 @@ export class JackpotsEffects {
         )
       )
     )
+  );
+
+  fetchJackpotsPolling$ = createEffect(() =>
+    interval(environment.jackpotPollingInterval).pipe(mapTo(fetchJackpots()))
   );
 }
