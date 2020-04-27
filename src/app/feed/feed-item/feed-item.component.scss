@@ -1,16 +1,75 @@
 @import "mixins";
+@import "variables";
+
+@mixin ribbonShadow($color) {
+  box-shadow: 0 0 0 -9px $color, 0px 14px 8px -8px rgba(0, 0, 0, 0.2),
+  inset 55px 0px 31px -33px rgba(255, 255, 255, 0.5),
+  inset 1px 55px 31px -33px rgba(255, 255, 255, 0.1),
+  inset -55px 0px 31px -33px rgba(0, 0, 0, 0.2);
+}
 
 .thumbnail {
-  color: white;
   font-family: sans-serif;
   font-weight: bold;
   font-size: 25px;
+  color: $clr-secondary;
 
 
   &, .img-thubnail {
     height: 154px;
     width: 260px;
   }
+
+    &.primary {
+      .ribbon {
+        color: $clr-prim;
+        background: rgb(204, 219, 184);
+        background: linear-gradient(
+            152deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(225, 225, 225, 1) 100%
+        );
+
+        @include ribbonShadow(#bbb);
+      }
+
+      .mask {
+        &:before {
+          background: #bbb;
+        }
+
+        &:after {
+          background: #666;
+        }
+      }
+    }
+
+    &.secondary {
+      .ribbon {
+        color: $clr-secondary;
+        background: rgb(204, 219, 184);
+        background: linear-gradient(
+            152deg,
+            rgba(204, 219, 184, 1) 0%,
+            rgba(144, 199, 69, 1) 6%,
+            rgba(194, 214, 167, 1) 100%
+        );
+        @include ribbonShadow(#57dd43);
+      }
+
+
+      .mask {
+        &:before {
+          background: #95bd65;
+        }
+
+        &:after {
+          background: #4d6530;
+        }
+      }
+    }
+
+
 
 
   .img-thubnail {
@@ -50,7 +109,6 @@
       height: 8px;
       left: 0px;
       border-radius: 8px 0px 0px 0px;
-      background: #95bd65;
     }
 
     &:after {
@@ -59,11 +117,12 @@
       left: 141px;
       top: 60px;
       border-radius: 0px 0px 8px 0px;
-      background: #4d6530;
     }
   }
 
   .ribbon {
+
+
     border-radius: 75% 75% 0px 0px;
     width: 200px;
     height: 40px;
@@ -73,17 +132,9 @@
     right: 7px;
     z-index: 2;
     transform: rotate(45deg);
-    box-shadow: 0 0 0 -9px #57dd43, 0px 14px 8px -8px rgba(0, 0, 0, 0.2),
-    inset 55px 0px 31px -33px rgba(255, 255, 255, 0.5),
-    inset 1px 55px 31px -33px rgba(255, 255, 255, 0.1),
-    inset -55px 0px 31px -33px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+
     text-align: center;
-    background: rgb(204, 219, 184);
-    background: linear-gradient(
-        152deg,
-        rgba(204, 219, 184, 1) 0%,
-        rgba(144, 199, 69, 1) 6%,
-        rgba(194, 214, 167, 1) 100%
-    );
+
   }
 }
