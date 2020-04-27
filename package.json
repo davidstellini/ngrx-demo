@@ -29,6 +29,7 @@
     "@ngrx/effects": "^9.1.0",
     "@ngrx/store": "^9.1.0",
     "@ngrx/store-devtools": "^9.1.0",
+    "@smoovy/scroller": "^0.1.13",
     "core-js": "^3.6.5",
     "ngx-virtual-scroller": "^4.0.3",
     "rxjs": "~6.5.5",

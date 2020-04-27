@@ -1,16 +1,18 @@
 @import "mixins";
 
 virtual-scroller {
-  width: 100vw;
-  height: 100vh;
 
-  display: flex;
-  flex-wrap: wrap;
+::ng-deep {
+  .scrollable-content {
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 2vw auto;
+    display: flex;
+  }
+}
 
   app-feed-item {
-    margin: step(2);
-    width: 300px;
-    height: 200px;
+    margin: step(1);
     display: inline-block;
   }
 }
@@ -19,6 +21,4 @@ virtual-scroller {
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
-
-
 }

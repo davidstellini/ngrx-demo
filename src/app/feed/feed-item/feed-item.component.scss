@@ -1,18 +1,42 @@
+@import "mixins";
 
 .thumbnail {
-  height: 200px;
-  width: 300px;
-  background-color: gray;
-  border-radius: 25px;
+  color: white;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 25px;
+
+
+  &, .img-thubnail {
+    height: 154px;
+    width: 260px;
+  }
+
+
+  .img-thubnail {
+    position: absolute;
+    border-radius: 25px;
+    background-color: gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    span {
+      padding: step(1);
+      word-break: break-word;
+      text-align: center;
+    }
+  }
 
   .mask {
     position: relative;
     overflow: hidden;
     float: right;
-    margin-top: -8px;
-    margin-right: -8px;
     height: 150px;
     width: 150px;
+
+    transform: scale(0.7) translate(40px, -40px);
 
     &:before,
     &:after {

@@ -1,4 +1,6 @@
 <div class="thumbnail">
+  <img *ngIf="!imgError" class="img-thubnail" [src]="backgroundImageUrl" [alt]="game.name" (error)="imgError = true" />
+  <div *ngIf="imgError" class="img-thubnail"> <span>{{ game.name }} </span></div>
   <div class="mask">
     <div class="ribbon">
     </div>
