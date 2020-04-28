@@ -1,6 +1,6 @@
 # Casino Demo
 This project demonstrates the use of NGRX + Facades pattern by Thomas Burleson [and endorsed by Auth0](https://auth0.com/blog/ngrx-facades-pros-and-cons/).
-One of the biggest advantages of using facades can be seen in the Stubs folder, where mocks and testing becomes a breeze.
+One of the biggest advantages of using facades can be seen in the Stubs under the testing module, where mocks and testing becomes a breeze.
 
 Demo page: http://davidstellini.github.io/ngrx-demo
 
@@ -16,7 +16,7 @@ Notes:
 - A development/staging environment was not yet set up.
 - The app uses a hash routing strategy as a simple way to support reloads on Github pages.
 - Unknown sections: "Live" and "Table"
-
+- Only a few basic unit tests were added
 
 
 # CLI Docs

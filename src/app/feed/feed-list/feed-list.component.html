@@ -1,3 +1,9 @@
+<!--Virtual scrolling was added to prevent poor performance in the case there are a huge number of -->
+<!--games under one category.-->
 <virtual-scroller #scroll [items]="gamesWithJackpot$ | async" [parentScroll]="scroll.window" [bufferAmount]="50">
-  <app-feed-item *ngFor="let game of scroll.viewPortItems; trackBy: trackBy" [game]="game"></app-feed-item>
+  <app-feed-item
+    *ngFor="let game of scroll.viewPortItems; trackBy: trackBy"
+    [game]="game"
+    [currentCategory]="currentCategory"
+  ></app-feed-item>
 </virtual-scroller>
