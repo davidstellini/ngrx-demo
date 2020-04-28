@@ -4,7 +4,7 @@ on:
     branches-ignore:
       - master
 jobs:
-  setup:
+  buildLintAndTest:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,20 +30,17 @@ jobs:
         run: npm install --frozen-lockfile
         env:
           CI: true
-  lint:
-    steps:
+
       - name: Lint
         run: npm run lint
         env:
           CI: true
-  test:
-    steps:
+
       - name: Test
         run: npm run test:ci
         env:
           CI: true
-  build:
-    steps:
+
       - name: Build
         run: npm run build:prod
         env:
