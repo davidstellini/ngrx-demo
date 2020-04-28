@@ -1,8 +1,4 @@
-<div
-  class="thumbnail"
-  [class.primary]="category === categoryTypes.Top"
-  [class.secondary]="category === categoryTypes.New"
->
+<div class="thumbnail" [class.primary]="category === categoryTypes.Top" [class.secondary]="category === categoryTypes.New">
   <img *ngIf="!imgError" class="img-thubnail" [src]="backgroundImageUrl" [alt]="game?.name" (error)="imgError = true" />
 
   <div *ngIf="imgError" class="img-thubnail">
