@@ -3,7 +3,11 @@ import { Store } from '@ngrx/store';
 import { selectGames } from '../store/selector';
 import { fetchGames } from '../store/action';
 import { GlobalState } from '../../../model';
-import { gamesWithJackpot } from '../../store/selector';
+import {
+  gamesWithJackpot,
+  GameWithJackpot,
+  selectGamesByPredicate,
+} from '../../store/selector';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +15,8 @@ import { gamesWithJackpot } from '../../store/selector';
 export class GamesFacade {
   games$ = this.store.select(selectGames);
   gamesWithJackpot$ = this.store.select(gamesWithJackpot);
+  getGamesByPredicate$ = (predicate: (game: GameWithJackpot) => boolean) =>
+    this.store.select(selectGamesByPredicate(predicate));
 
   constructor(private store: Store<GlobalState>) {}
 

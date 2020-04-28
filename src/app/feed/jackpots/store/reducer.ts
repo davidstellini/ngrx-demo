@@ -19,8 +19,8 @@ const initialState: JackpotsState = {
 
 const jackpotsReducer = createReducer(
   initialState,
-  on(fetchJackpots, () => ({
-    ...initialState,
+  on(fetchJackpots, (state) => ({
+    ...state,
     loading: true,
   })),
   on(fetchJackpotsSuccess, (state, { payload }) => ({

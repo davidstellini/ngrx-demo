@@ -7,7 +7,7 @@ import {
   fetchJackpotsFail,
   fetchJackpotsSuccess,
 } from './action';
-import { interval, of, timer } from 'rxjs';
+import { interval, of } from 'rxjs';
 import { Jackpot } from '../model';
 import { environment } from '../../../../environments/environment';
 

@@ -1,9 +1,8 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { filter, map } from 'rxjs/operators';
-import { GamesFacade } from '../games/services/games.facade';
-import { JackpotsFacade } from '../jackpots/services/jackpots.facade';
-import { combineLatest } from 'rxjs';
-import { GameWithJackpot } from '../store/selector';
+import { Component, OnInit } from '@angular/core';
+import { switchMap } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Game } from '../games/model';
+import { FeedListService } from './feed-list.service';
 
 @Component({
   selector: 'app-feed',
@@ -11,32 +10,23 @@ import { GameWithJackpot } from '../store/selector';
   styleUrls: ['./feed-list.component.scss'],
 })
 export class FeedListComponent implements OnInit {
-  // Note - we don't iterate over gamesWithJackpot$ directly because this is re-created each time the jackpots are updated.
-  gamesJackpotMap: Map<string, GameWithJackpot> = null;
-  gamesWithJackpot$ = this.gamesFacade.gamesWithJackpot$;
-  games$ = this.gamesFacade.games$;
-
-  getGameWithJackpot(gameId: string) {
-    return this.gamesJackpotMap && this.gamesJackpotMap.get(gameId);
-  }
+  gamesWithJackpot$ = this.route.params.pipe(
+    switchMap(({ category }) =>
+      this.feedListService.gamesByRouteCategory$(category)
+    )
+  );
 
   constructor(
-    private gamesFacade: GamesFacade,
-    private jackpotsFacade: JackpotsFacade,
-    private elementRef: ElementRef
-  ) {
-    this.gamesWithJackpot$
-      // todo- memory leak
-      .subscribe(
-        (gamesWithJackpot) =>
-          (this.gamesJackpotMap = new Map(
-            gamesWithJackpot.map((game) => [game.id, game])
-          ))
-      );
+    private feedListService: FeedListService,
+    private route: ActivatedRoute
+  ) {}
+
+  trackBy(index: number, game: Game) {
+    console.log(game.id);
+    return game && game.id;
   }
 
   ngOnInit() {
-    this.gamesFacade.fetchGames();
-    this.jackpotsFacade.fetchJackpots();
+    this.feedListService.fetchFeed();
   }
 }

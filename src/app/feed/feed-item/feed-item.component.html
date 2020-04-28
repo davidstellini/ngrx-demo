@@ -13,4 +13,13 @@
       {{ category }}
     </div>
   </div>
+
+  <div class="info-play">
+    <div class="info jackpot" *ngIf="showJackpot()">{{ game?.jackpotAmount }}</div>
+    <div class="play-button" *ngIf="!showJackpot()">
+      <img src="./../assets/icons/play_arrow.svg" />
+    </div>
+
+    <div class="info name" *ngIf="!showJackpot()">{{ game?.name }}</div>
+  </div>
 </div>

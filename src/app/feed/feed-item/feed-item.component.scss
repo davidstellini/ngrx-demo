@@ -1,11 +1,58 @@
 @import "mixins";
 @import "variables";
 
-@mixin ribbonShadow($color) {
-  box-shadow: 0 0 0 -9px $color, 0px 14px 8px -8px rgba(0, 0, 0, 0.2),
-  inset 55px 0px 31px -33px rgba(255, 255, 255, 0.5),
-  inset 1px 55px 31px -33px rgba(255, 255, 255, 0.1),
-  inset -55px 0px 31px -33px rgba(0, 0, 0, 0.2);
+.info-play {
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  transition: all 0.5s ease-in-out;
+  position: absolute;
+  height: 154px;
+  width: 260px;
+
+  .play-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    border: 2px solid white;
+    background-color: rgba(141, 198, 63, 0.6);
+    border-radius: 50%;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    img {
+      height: 48px;
+    }
+  }
+
+  .info {
+    width: 100%;
+    padding: 10px;
+    position: absolute;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 18px;
+
+    &.jackpot {
+      bottom: auto;
+      top: 0;
+      border-top-right-radius: 25px;
+      border-top-left-radius: 25px;
+    }
+
+    &.name{
+      bottom: 0;
+      top: auto;
+      border-bottom-right-radius: 25px;
+      border-bottom-left-radius: 25px;
+    }
+  }
 }
 
 .thumbnail {
@@ -88,12 +135,21 @@
     }
   }
 
+  &:hover {
+    .info-play {
+      visibility: visible;
+      opacity: 1;
+    }
+
+  }
+
   .mask {
     position: relative;
     overflow: hidden;
     float: right;
     height: 150px;
     width: 150px;
+    z-index: 999;
 
     transform: scale(0.7) translate(40px, -40px);
 
