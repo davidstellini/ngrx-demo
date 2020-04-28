@@ -2,13 +2,16 @@
 @import "variables";
 
 .info-play {
-  opacity: 0;
-  visibility: hidden;
   display: flex;
-  transition: all 0.5s ease-in-out;
   position: absolute;
   height: 154px;
   width: 260px;
+
+  .play-button, .name {
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s ease-in-out;
+  }
 
   .play-button {
     display: flex;
@@ -137,7 +140,7 @@
   }
 
   &:hover {
-    .info-play {
+    .play-button, .name {
       visibility: visible;
       opacity: 1;
     }

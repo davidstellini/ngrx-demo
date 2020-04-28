@@ -10,7 +10,7 @@ import { FeedListService } from './feed-list.service';
   styleUrls: ['./feed-list.component.scss'],
 })
 export class FeedListComponent implements OnInit {
-  currentCategory: string = '';
+  currentCategory = '';
   currentCategory$ = this.route.params.pipe(map(({ category }) => category));
   gamesWithJackpot$ = this.currentCategory$.pipe(
     switchMap((category) =>

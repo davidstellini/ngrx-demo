@@ -26,9 +26,16 @@ export class FeedItemComponent implements OnChanges {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  showJackpot = (): boolean => typeof this.game.jackpotAmount === 'number';
+  showJackpot = (): boolean =>
+    this.game && typeof this.game.jackpotAmount === 'number';
 
-  getCategoryFromGame(game: Game): GameCategory.Top | GameCategory.New | null {
+  getRibbonCategoryFromGame(
+    game: Game
+  ): GameCategory.Top | GameCategory.New | null {
+    if (!game.categories) {
+      return null;
+    }
+
     switch (this.currentCategory) {
       case AppGameCategoryRoute.Top:
         return game.categories.includes(GameCategory.New) && GameCategory.New;
@@ -56,6 +63,6 @@ export class FeedItemComponent implements OnChanges {
       }
     }
 
-    this.category = this.getCategoryFromGame(this.game);
+    this.category = this.getRibbonCategoryFromGame(this.game);
   }
 }
