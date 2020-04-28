@@ -8,8 +8,6 @@ import { JackpotsFacade } from '../jackpots/services/jackpots.facade';
 
 /**
  * Finds a game that matches one or more of categories;
- * @param game
- * @param categoriesToSearch
  */
 const gameCategoryFilter = (
   game: GameWithJackpot,
@@ -22,7 +20,6 @@ const gameCategoryFilter = (
 /**
  * Finds games that have jackpots:
  * //Todo: GameWithJackpot / Game should be a class so we can use instanceof checks instead;
- * @param game
  */
 const jackpotFilter = (game: GameWithJackpot) =>
   typeof game.jackpotAmount === 'number';
