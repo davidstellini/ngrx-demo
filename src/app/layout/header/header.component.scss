@@ -20,6 +20,11 @@ nav[role="custom-dropdown"] {
   width: 100%;
   background-color: $clr-gry-d;
 
+  a {
+    padding: 24px;
+    display: block;
+  }
+  
   a,
   label {
     color: white;
@@ -36,12 +41,13 @@ nav[role="custom-dropdown"] {
     display: flex;
 
     > li {
-      padding: 24px;
+
       flex-grow: 1;
       background-image: $clr-gry-m;
       text-align: center;
       cursor: pointer;
       color: #fff;
+      display: block;
 
       &:hover {
         background-color: $clr-prim;

@@ -1,3 +1,10 @@
 @function step($n) {
   @return $n * 25px;
 }
+
+@mixin ribbonShadow($color) {
+  box-shadow: 0 0 0 -9px $color, 0px 14px 8px -8px rgba(0, 0, 0, 0.2),
+  inset 55px 0px 31px -33px rgba(255, 255, 255, 0.5),
+  inset 1px 55px 31px -33px rgba(255, 255, 255, 0.1),
+  inset -55px 0px 31px -33px rgba(0, 0, 0, 0.2);
+}

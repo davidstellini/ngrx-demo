@@ -1,24 +1,19 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-} from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Game, GameCategory } from '../games/model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { GameWithJackpot } from '../store/selector';
 
 @Component({
   selector: 'app-feed-item',
   templateUrl: './feed-item.component.html',
   styleUrls: ['./feed-item.component.scss'],
 })
-export class FeedItemComponent implements OnInit, OnChanges {
+export class FeedItemComponent implements OnChanges {
   public imgError = false;
   public category: GameCategory = null;
   public categoryTypes = GameCategory;
 
-  @Input() game?: Game = null;
+  @Input() game?: GameWithJackpot = null;
   @Input() showRibbon = false;
   private _backgroundImageUrl: SafeUrl;
   public get backgroundImageUrl() {
@@ -27,7 +22,7 @@ export class FeedItemComponent implements OnInit, OnChanges {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  ngOnInit(): void {}
+  showJackpot = (): boolean => typeof this.game.jackpotAmount === 'number'; // && 'jackpotAmount' in this.game;
 
   getCategoryFromGame(game: Game): GameCategory.Top | GameCategory.New | null {
     if (game) {

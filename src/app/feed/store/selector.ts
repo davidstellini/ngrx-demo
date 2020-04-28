@@ -9,8 +9,8 @@ export interface GameWithJackpot extends Game {
 export const gamesWithJackpot = createSelector(
   selectGames,
   selectJackpots,
-  (games, jackpots): GameWithJackpot[] => {
-    return games.map((game) => {
+  (games, jackpots): GameWithJackpot[] =>
+    games.map((game) => {
       const gameWithJackpot = jackpots.find(
         (jackpot) => jackpot.game === game.id
       );
@@ -19,6 +19,9 @@ export const gamesWithJackpot = createSelector(
         ...game,
         jackpotAmount: (gameWithJackpot && gameWithJackpot.amount) || null,
       };
-    });
-  }
+    })
 );
+
+export const selectGamesByPredicate = (
+  predicate: (game: GameWithJackpot) => boolean
+) => createSelector(gamesWithJackpot, (games) => games.filter(predicate));

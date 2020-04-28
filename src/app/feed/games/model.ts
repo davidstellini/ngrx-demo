@@ -4,7 +4,6 @@ export interface Game {
   image: string;
   id: string;
 }
-
 export enum GameCategory {
   Top = 'top',
   Slots = 'slots',
