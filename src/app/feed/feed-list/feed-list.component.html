@@ -1,3 +1,6 @@
-<virtual-scroller #scroll [items]="gamesWithJackpot$ | async" [parentScroll]="scroll.window">
-    <app-feed-item *ngFor="let game of scroll.viewPortItems"></app-feed-item>
+<virtual-scroller #scroll [items]="games$ | async" [parentScroll]="scroll.window" [bufferAmount]="50">
+    <app-feed-item *ngFor="let game of scroll.viewPortItems" [game]="getGameWithJackpot(game.id)"></app-feed-item>
 </virtual-scroller>
+
+
+<!--<app-feed-item *ngFor="let game of games$ | async" [game]="getGameWithJackpot(game.id)"></app-feed-item>-->
