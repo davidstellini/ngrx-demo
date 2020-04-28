@@ -1,4 +1,21 @@
-# CasinoDemo
+# Casino Demo
+This project demonstrates the use of NGRX + Facades pattern by Thomas Burleson [and endorsed by Auth0](https://auth0.com/blog/ngrx-facades-pros-and-cons/).
+One of the biggest advantages of using facades can be seen in the Stubs folder, where mocks and testing becomes a breeze.
+
+Demo page: http://davidstellini.github.io/ngrx-demo
+
+Shiny CI badge:
+![](https://github.com/davidstellini/ngrx-demo/workflows/Build%20Test%20And%20Deploy/badge.svg)
+
+# Continious Integration 
+
+The project runs build, and tests, on each push.
+On each merge to master, it automatically deploys to github pages.
+A development environment was not yet set up.
+
+
+
+# CLI Docs
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
 

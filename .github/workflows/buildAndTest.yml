@@ -1,0 +1,47 @@
+name: Build And Test
+on:
+  push:
+    branches-ignore:
+      - master
+jobs:
+  buildLintAndTest:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Begin CI...
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Use Node 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Use cached node_modules
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: nodeModules-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            nodeModules-
+
+      - name: Install dependencies
+        run: npm install --frozen-lockfile
+        env:
+          CI: true
+
+      - name: Lint
+        run: npm run lint
+        env:
+          CI: true
+
+      - name: Test
+        run: npm run test:ci
+        env:
+          CI: true
+
+      - name: Build
+        run: npm run build:prod
+        env:
+          CI: true
