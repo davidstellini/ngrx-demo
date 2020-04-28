@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { FeedListService } from './feed-list.service';
 
-describe('FeedListService', () => {
+xdescribe('FeedListService', () => {
   let service: FeedListService;
 
   beforeEach(() => {
