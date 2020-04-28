@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { switchMap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from '../games/model';
 import { FeedListService } from './feed-list.service';
@@ -10,8 +10,10 @@ import { FeedListService } from './feed-list.service';
   styleUrls: ['./feed-list.component.scss'],
 })
 export class FeedListComponent implements OnInit {
-  gamesWithJackpot$ = this.route.params.pipe(
-    switchMap(({ category }) =>
+  currentCategory: string = '';
+  currentCategory$ = this.route.params.pipe(map(({ category }) => category));
+  gamesWithJackpot$ = this.currentCategory$.pipe(
+    switchMap((category) =>
       this.feedListService.gamesByRouteCategory$(category)
     )
   );
@@ -19,11 +21,15 @@ export class FeedListComponent implements OnInit {
   constructor(
     private feedListService: FeedListService,
     private route: ActivatedRoute
-  ) {}
+  ) {
+    this.currentCategory$.subscribe((currentCategory) => {
+      this.currentCategory = currentCategory;
+      console.log('current category = ', currentCategory);
+    });
+  }
 
   trackBy(index: number, game: Game) {
-    console.log(game.id);
-    return game && game.id;
+    return game && game.id && this.currentCategory;
   }
 
   ngOnInit() {

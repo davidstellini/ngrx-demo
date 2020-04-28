@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Game, GameCategory } from '../games/model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { GameWithJackpot } from '../store/selector';
+import { AppGameCategoryRoute } from '../../model/app-game-category.model';
 
 @Component({
   selector: 'app-feed-item',
@@ -9,30 +10,38 @@ import { GameWithJackpot } from '../store/selector';
   styleUrls: ['./feed-item.component.scss'],
 })
 export class FeedItemComponent implements OnChanges {
+  private _backgroundImageUrl: SafeUrl;
+
   public imgError = false;
   public category: GameCategory = null;
   public categoryTypes = GameCategory;
 
-  @Input() game?: GameWithJackpot = null;
-  @Input() showRibbon = false;
-  private _backgroundImageUrl: SafeUrl;
   public get backgroundImageUrl() {
     return this._backgroundImageUrl;
   }
+
+  @Input() game?: GameWithJackpot = null;
+  @Input() showRibbon = false;
+  @Input() currentCategory: AppGameCategoryRoute;
 
   constructor(private sanitizer: DomSanitizer) {}
 
   showJackpot = (): boolean => typeof this.game.jackpotAmount === 'number';
 
   getCategoryFromGame(game: Game): GameCategory.Top | GameCategory.New | null {
-    if (game) {
-      if (game.categories.find((c) => c === GameCategory.Top)) {
-        return GameCategory.Top;
-      } else if (game.categories.find((c) => c === GameCategory.New)) {
-        return GameCategory.New;
-      } else {
+    switch (this.currentCategory) {
+      case AppGameCategoryRoute.Top:
+        return game.categories.includes(GameCategory.New) && GameCategory.New;
+      case AppGameCategoryRoute.New:
+        return game.categories.includes(GameCategory.Top) && GameCategory.Top;
+      default:
+        if (game.categories.includes(GameCategory.Top)) {
+          return GameCategory.Top;
+        } else if (game.categories.includes(GameCategory.New)) {
+          return GameCategory.New;
+        }
+
         return null;
-      }
     }
   }
 
@@ -45,8 +54,8 @@ export class FeedItemComponent implements OnChanges {
           game.image
         );
       }
-
-      this.category = this.getCategoryFromGame(this.game);
     }
+
+    this.category = this.getCategoryFromGame(this.game);
   }
 }
