@@ -22,7 +22,7 @@ export class FeedItemComponent implements OnChanges {
 
   constructor(private sanitizer: DomSanitizer) {}
 
-  showJackpot = (): boolean => typeof this.game.jackpotAmount === 'number'; // && 'jackpotAmount' in this.game;
+  showJackpot = (): boolean => typeof this.game.jackpotAmount === 'number';
 
   getCategoryFromGame(game: Game): GameCategory.Top | GameCategory.New | null {
     if (game) {

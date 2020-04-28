@@ -11,7 +11,11 @@ Shiny CI badge:
 
 The project runs build, and tests, on each push.
 On each merge to master, it automatically deploys to github pages.
-A development environment was not yet set up.
+
+Notes:
+- A development environment was not yet set up.
+- The app uses a hash routing strategy as a simple way to support reloads on Github pages
+- Unknown sections: "Live" and "Table"
 
 
 
