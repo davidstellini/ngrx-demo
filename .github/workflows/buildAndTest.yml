@@ -1,10 +1,10 @@
-name: Lint And Test
+name: Build And Test
 on:
   push:
     branches-ignore:
       - master
 jobs:
-  deploy:
+  lintAndTest:
     runs-on: ubuntu-latest
 
     steps:
@@ -38,5 +38,10 @@ jobs:
 
       - name: Test
         run: npm run test:ci
+        env:
+          CI: true
+
+      - name: Build
+        run: npm run build:prod
         env:
           CI: true
